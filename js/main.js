@@ -10,7 +10,7 @@ const handleMove = () => {
         console.log(delta);
         // image.style.width = (elmnt.offsetLeft - initialPos) + "px";
         // elmnt.style.left = (elmnt.offsetLeft - initialPos) + "px";
-        // Funcion que adapta la posicion del manejador e imagen de manera proporcional
+        // Funcion que adapta la posicion del manejador e imagen de manera proporcional a viewport
 
 
         // Evita que al adaptar el tamaño de pantalla, el manejador se salga del contenedor.
@@ -56,11 +56,12 @@ function dragElement(elmnt) {
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // Posicion en dispositivos mobile
-        console.log(e.touches[0].clientX);
+        /* Posicion condicional, si la primera es indefinida toma la segunda opcion. La primera corresponde a la posicion en vista en desktop y la segunda dispositivos touch (moviles y tablets)
+        */
+        let currentPos =  e.clientX || e.touches[0].clientX;
         // calcular la nueva posicion del puntero y de la imagen
-        initialPos = finalPos - e.clientX;
-        finalPos = e.clientX;
+        initialPos = finalPos - currentPos;
+        finalPos = currentPos;
         image.style.width = (elmnt.offsetLeft - initialPos) + "px";
         elmnt.style.left = (elmnt.offsetLeft - initialPos) + "px";
         // console.log(finalPos);
