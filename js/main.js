@@ -25,17 +25,16 @@ function dragElement(elmnt) {
     function dragMouseDown(e) {
         e = e || window.event; // Eventos para Chrome e IE
         e.preventDefault();
-        // get the mouse cursor position at startup:
         finalPos = e.clientX;
         document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
+    // Llama a la funcion cuando el mouse se mueve
         document.onmousemove = elementDrag;
     }
 
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // calculate the new cursor position:
+        // calcular la nueva posicion del puntero y de la imagen
         initialPos = finalPos - e.clientX;
         finalPos = e.clientX;
         image.style.width = (elmnt.offsetLeft - initialPos) + "px";
@@ -43,7 +42,7 @@ function dragElement(elmnt) {
     }
 
     function closeDragElement() {
-        /* stop moving when mouse button is released:*/
+        /* Detener el evento cuando el mouse es soltado */
         document.onmouseup = null;
         document.onmousemove = null;
     }
