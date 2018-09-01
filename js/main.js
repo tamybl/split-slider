@@ -1,21 +1,21 @@
-
+var delta;
 
 const handleMouse = () => {
     // contenedor principal
+    const articleWrap = document.getElementById('csl');
+    delta = articleWrap.clientWidth;
 
+    window.addEventListener('resize', function () {
+        delta = articleWrap.clientWidth;
+        console.log(delta);
+    })
 }
 document.addEventListener('DOMContentLoaded', handleMouse);
 
 
-let articleWrap = document.getElementById('csl');
-let limitWidth = articleWrap.clientWidth;
-
-articleWrap.addEventListener('onresize', function () {
-    console.log(articleWrap.offsetWidth);
-})
 
 
-dragElement(document.getElementById("draggable-handle"));
+dragElement(document.getElementById("draggable-handle"), delta);
 
 function dragElement(elmnt) {
     let [initialPos, finalPos] = [0, 0];
@@ -27,8 +27,10 @@ function dragElement(elmnt) {
         e.preventDefault();
         finalPos = e.clientX;
         document.onmouseup = closeDragElement;
-    // Llama a la funcion cuando el mouse se mueve
+        // Llama a la funcion cuando el mouse se mueve
         document.onmousemove = elementDrag;
+
+
     }
 
     function elementDrag(e) {
@@ -39,6 +41,19 @@ function dragElement(elmnt) {
         finalPos = e.clientX;
         image.style.width = (elmnt.offsetLeft - initialPos) + "px";
         elmnt.style.left = (elmnt.offsetLeft - initialPos) + "px";
+        // console.log(finalPos);
+        console.log(elmnt.offsetLeft);
+        // Estableciendo limites del elemento arrastrable
+        if (delta - 15 <= elmnt.offsetLeft) {
+            image.style.width = delta - 15 + "px";
+            elmnt.style.left = delta - 15 + "px";
+            document.onmousemove = null;
+        }
+        if (elmnt.offsetLeft <= 15 ) {
+            image.style.width = 15 + "px";
+            elmnt.style.left =  15 + "px";
+            document.onmousemove = null;
+        }
     }
 
     function closeDragElement() {
