@@ -1,6 +1,6 @@
 var delta;
 
-const handleMouse = () => {
+const handleMove = () => {
     // contenedor principal
     const articleWrap = document.getElementById('csl');
     delta = articleWrap.clientWidth;
@@ -10,7 +10,7 @@ const handleMouse = () => {
         console.log(delta);
     })
 }
-document.addEventListener('DOMContentLoaded', handleMouse);
+document.addEventListener('DOMContentLoaded', handleMove);
 
 
 
@@ -21,6 +21,7 @@ function dragElement(elmnt) {
     let [initialPos, finalPos] = [0, 0];
     let image = document.querySelector('#csl .csl_layer.slide-top');
     elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragMouseDown, { passive: false });
 
     function dragMouseDown(e) {
         e = e || window.event; // Eventos para Chrome e IE
@@ -29,6 +30,7 @@ function dragElement(elmnt) {
         document.onmouseup = closeDragElement;
         // Llama a la funcion cuando el mouse se mueve
         document.onmousemove = elementDrag;
+        document.addEventListener('touchmove', elementDrag, { passive: false });
 
 
     }
