@@ -8,14 +8,32 @@ const handleMove = () => {
     window.addEventListener('resize', function () {
         delta = articleWrap.clientWidth;
         console.log(delta);
+        // image.style.width = (elmnt.offsetLeft - initialPos) + "px";
+        // elmnt.style.left = (elmnt.offsetLeft - initialPos) + "px";
+        // Funcion que adapta la posicion del manejador e imagen de manera proporcional
+
+
+        // Evita que al adaptar el tamaño de pantalla, el manejador se salga del contenedor.
+        if (delta - 15 <= document.getElementById("draggable-handle").offsetLeft) {
+            document.querySelector('#csl .csl_layer.slide-top').style.width = delta - 15 + "px";
+            document.getElementById("draggable-handle").style.left = delta - 15 + "px";
+            // document.onmousemove = null;
+        }
+        if (document.getElementById("draggable-handle").offsetLeft <= 15 ) {
+            document.querySelector('#csl .csl_layer.slide-top').style.width = 15 + "px";
+            document.getElementById("draggable-handle").style.left =  15 + "px";
+            // document.onmousemove = null;
+        }
     })
+
+    dragElement(document.getElementById("draggable-handle"));
 }
 document.addEventListener('DOMContentLoaded', handleMove);
 
 
 
 
-dragElement(document.getElementById("draggable-handle"), delta);
+
 
 function dragElement(elmnt) {
     let [initialPos, finalPos] = [0, 0];
@@ -38,6 +56,8 @@ function dragElement(elmnt) {
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
+        // Posicion en dispositivos mobile
+        console.log(e.touches[0].clientX);
         // calcular la nueva posicion del puntero y de la imagen
         initialPos = finalPos - e.clientX;
         finalPos = e.clientX;
