@@ -23,6 +23,7 @@
 #csl .csl_layer .layer_content-wrap {
   position: absolute;
   top: 0;
+  overflow: hidden;
 }
 #csl .csl_layer .layer_content-wrap img {
   display: block;
@@ -84,10 +85,39 @@
 #csl .handle-item--line::before {
   content: "";
   width: 5px;
-  height: 300px;
+  height: 160px;
   background: black;
   position: absolute;
   z-index: 0;
+  bottom: 30px;
 }
+
+#csl .handle-item--line::after {
+  content: "";
+  width: 5px;
+  height: 160px;
+  background: black;
+  position: absolute;
+  z-index: 0;
+  top: 30px;
+}
+
+/* sin saass */
+#csl .csl_layer.slide-top {
+  width: 50%;
+}
+
+#csl .slide-top .layer_content-wrap {
+  width: 100vw;
+  max-width: 1248px;
+  z-index: 10;
+}
+
+#csl .csl_layer.slide-bottom {
+  right: 0;
+  width: 100%;
+}
+
+
 
 /*# sourceMappingURL=main.css.map */
