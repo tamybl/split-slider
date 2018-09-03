@@ -1,43 +1,32 @@
-var delta;
-
 const handleMove = () => {
-    // contenedor principal
+    // Variables Globales
     const articleWrap = document.getElementById('csl');
-    delta = articleWrap.clientWidth;
+    let delta = articleWrap.clientWidth;
+    let inicialsize = articleWrap.clientWidth;
+    let element = document.getElementById("draggable-handle");
+    let image = document.querySelector('#csl .csl_layer.slide-top');
+    
 
     window.addEventListener('resize', function () {
         delta = articleWrap.clientWidth;
-        console.log(delta);
-        // image.style.width = (elmnt.offsetLeft - initialPos) + "px";
-        // elmnt.style.left = (elmnt.offsetLeft - initialPos) + "px";
-        // Funcion que adapta la posicion del manejador e imagen de manera proporcional a viewport
-
-
         // Evita que al adaptar el tamaño de pantalla, el manejador se salga del contenedor.
-        if (delta - 15 <= document.getElementById("draggable-handle").offsetLeft) {
-            document.querySelector('#csl .csl_layer.slide-top').style.width = delta - 15 + "px";
-            document.getElementById("draggable-handle").style.left = delta - 15 + "px";
-            // document.onmousemove = null;
+        if (delta - 15 <= element.offsetLeft) {
+            image.style.width = delta - 15 + "px";
+            element.style.left = delta - 15 + "px";
         }
-        if (document.getElementById("draggable-handle").offsetLeft <= 15 ) {
-            document.querySelector('#csl .csl_layer.slide-top').style.width = 15 + "px";
-            document.getElementById("draggable-handle").style.left =  15 + "px";
-            // document.onmousemove = null;
+        if (element.offsetLeft <= 15 ) {
+            image.style.width = 15 + "px";
+            element.style.left =  15 + "px";
         }
     })
-
-    dragElement(document.getElementById("draggable-handle"));
+    dragElement(element, delta, image);
 }
+
 document.addEventListener('DOMContentLoaded', handleMove);
 
 
-
-
-
-
-function dragElement(elmnt) {
+function dragElement(elmnt, delta, image) {
     let [initialPos, finalPos] = [0, 0];
-    let image = document.querySelector('#csl .csl_layer.slide-top');
     elmnt.onmousedown = dragMouseDown;
     elmnt.addEventListener('touchstart', dragMouseDown, { passive: false });
 
@@ -83,6 +72,11 @@ function dragElement(elmnt) {
         /* Detener el evento cuando el mouse es soltado */
         document.onmouseup = null;
         document.onmousemove = null;
+        // document.querySelector('#csl .csl_layer.slide-top').style.width = (image.clientWidth/delta)*100 + "%";
+        // document.getElementById("draggable-handle").style.left = (elmnt.offsetLeft/delta)*100 + "%";
+        // document.getElementById("draggable-handle").style.transform = "translate(-" + (elmnt.offsetLeft)*100 + ", -50%);";
+            // elmnt.style.left = delta - 15 + "px";
+
     }
 }
 
