@@ -9,9 +9,7 @@ const handleMove = () => {
 
     window.addEventListener('resize', function () {
         delta = articleWrap.clientWidth;
-        console.log(delta);
         // Evita que al adaptar el tamaño de pantalla, el manejador se salga del contenedor.
-
         if (delta - 15 <= element.offsetLeft) {
             image.style.width = delta - 4 + "px";
             element.style.left = delta - 4 + "px";
@@ -50,7 +48,6 @@ function dragElement(elmnt) {
         finalPos = currentPos;
         image.style.width = (elmnt.offsetLeft - initialPos) + "px";
         elmnt.style.left = (elmnt.offsetLeft - initialPos) + "px";
-        console.log(elmnt.offsetLeft);
         // Estableciendo limites del elemento arrastrable
         if (delta - 2 <= elmnt.offsetLeft) {
             image.style.width = delta - 2 + "px";
@@ -67,7 +64,4 @@ function dragElement(elmnt) {
         document.onmousemove = null;
     }
 
-    function check(delta, img) {
-            
-    }
 }

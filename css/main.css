@@ -119,8 +119,10 @@
 }
 #csl #csl_wrapper .container-description--product img.img-logo--brand {
   height: 10%;
-  max-width: 100px;
+  max-height: 20px;
   display: inline-block;
+  object-fit: initial;
+  width: auto;
 }
 #csl #csl_wrapper .container-description--product .block-title--product {
   font-size: calc(1.125rem + ((1vw - 4.8px) * 0.1389));
@@ -143,8 +145,22 @@
   font-size: calc(20px + 0.6vw);
   font-weight: 700;
 }
+#csl #csl_wrapper .container-description--product .block-content--price .offer-price--product .block-credit--card img {
+  max-width: 40px;
+  object-fit: initial;
+  height: auto;
+  display: inline-block;
+}
 #csl #csl_wrapper .container-description--product .normal-price--product {
   font-size: 12px;
+}
+#csl #csl_wrapper .container-description--product .normal-price--product :nth-child(odd) {
+  font-weight: 300;
+}
+@media screen and (max-width: 520px) {
+  #csl #csl_wrapper .container-description--product .normal-price--product {
+    font-size: 0.8em;
+  }
 }
 #csl .csl_layer {
   position: absolute;
@@ -237,7 +253,7 @@
 }
 @media screen and (max-width: 520px) {
   #csl .csl_layer.slide-top .container-description--product {
-    right: 2%;
+    right: 5%;
   }
 }
 #csl .slide-top .layer_content-wrap {
@@ -258,7 +274,7 @@
 }
 @media screen and (max-width: 520px) {
   #csl .csl_layer.slide-bottom .container-description--product {
-    left: 2%;
+    left: 5%;
   }
 }
 #csl .button-link--product {
