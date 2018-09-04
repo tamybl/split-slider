@@ -110,7 +110,8 @@
   -o-transform: translateY(22%);
   padding: 10px;
   box-sizing: border-box;
-  max-width: 230px;
+  max-width: 220px;
+  min-width: 160px;
   width: 40%;
   line-height: 1.2;
   display: block;
@@ -151,6 +152,11 @@
   height: auto;
   display: inline-block;
 }
+@media screen and (max-width: 520px) {
+  #csl #csl_wrapper .container-description--product .block-content--price .offer-price--product .block-credit--card img {
+    max-width: 30px;
+  }
+}
 #csl #csl_wrapper .container-description--product .normal-price--product {
   font-size: 12px;
 }
@@ -159,7 +165,7 @@
 }
 @media screen and (max-width: 520px) {
   #csl #csl_wrapper .container-description--product .normal-price--product {
-    font-size: 0.8em;
+    font-size: 10px;
   }
 }
 #csl .csl_layer {
